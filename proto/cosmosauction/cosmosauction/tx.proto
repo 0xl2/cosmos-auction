@@ -7,7 +7,29 @@ option go_package = "github.com/naruto0913/cosmos-auction/x/cosmosauction/types"
 
 // Msg defines the Msg service.
 service Msg {
-    // this line is used by starport scaffolding # proto/tx/rpc
+      rpc CreateAuction(MsgCreateAuction) returns (MsgCreateAuctionResponse);
+  rpc CreateBid(MsgCreateBid) returns (MsgCreateBidResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateAuction {
+  string creator = 1;
+  string name = 2;
+  uint64 limit = 3;
+}
+
+message MsgCreateAuctionResponse {
+  string auctionIndex = 1;
+}
+
+message MsgCreateBid {
+  string creator = 1;
+  uint64 auction = 2;
+  uint64 bid = 3;
+}
+
+message MsgCreateBidResponse {
+  string bidResult = 1;
 }
 
 // this line is used by starport scaffolding # proto/tx/message

@@ -15,7 +15,7 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/naruto0913/cosmos-auction/cosmosauction/params";
   }
-  // this line is used by starport scaffolding # 2
+// this line is used by starport scaffolding # 2
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.

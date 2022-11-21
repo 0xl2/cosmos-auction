@@ -5,6 +5,8 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "cosmosauction/cosmosauction/params.proto";
+import "cosmosauction/cosmosauction/auction_bider.proto";
+import "cosmosauction/cosmosauction/auction_winner.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/naruto0913/cosmos-auction/x/cosmosauction/types";
@@ -15,7 +17,27 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/naruto0913/cosmos-auction/cosmosauction/params";
   }
-  // this line is used by starport scaffolding # 2
+  // Queries a AuctionBider by index.
+	rpc AuctionBider(QueryGetAuctionBiderRequest) returns (QueryGetAuctionBiderResponse) {
+		option (google.api.http).get = "/naruto0913/cosmos-auction/cosmosauction/auction_bider/{index}";
+	}
+
+	// Queries a list of AuctionBider items.
+	rpc AuctionBiderAll(QueryAllAuctionBiderRequest) returns (QueryAllAuctionBiderResponse) {
+		option (google.api.http).get = "/naruto0913/cosmos-auction/cosmosauction/auction_bider";
+	}
+
+// Queries a AuctionWinner by index.
+	rpc AuctionWinner(QueryGetAuctionWinnerRequest) returns (QueryGetAuctionWinnerResponse) {
+		option (google.api.http).get = "/naruto0913/cosmos-auction/cosmosauction/auction_winner/{index}";
+	}
+
+	// Queries a list of AuctionWinner items.
+	rpc AuctionWinnerAll(QueryAllAuctionWinnerRequest) returns (QueryAllAuctionWinnerResponse) {
+		option (google.api.http).get = "/naruto0913/cosmos-auction/cosmosauction/auction_winner";
+	}
+
+// this line is used by starport scaffolding # 2
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -25,6 +47,42 @@ message QueryParamsRequest {}
 message QueryParamsResponse {
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAuctionBiderRequest {
+	  string index = 1;
+
+}
+
+message QueryGetAuctionBiderResponse {
+	AuctionBider auctionBider = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAuctionBiderRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAuctionBiderResponse {
+	repeated AuctionBider auctionBider = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetAuctionWinnerRequest {
+	  string index = 1;
+
+}
+
+message QueryGetAuctionWinnerResponse {
+	AuctionWinner auctionWinner = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAuctionWinnerRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAuctionWinnerResponse {
+	repeated AuctionWinner auctionWinner = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 // this line is used by starport scaffolding # 3

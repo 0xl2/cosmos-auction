@@ -1,0 +1,13 @@
+syntax = "proto3";
+package naruto0913.cosmosauction.cosmosauction;
+
+option go_package = "github.com/naruto0913/cosmos-auction/x/cosmosauction/types";
+
+message AuctionWinner {
+  string index = 1; 
+  uint64 auction = 2; 
+  string winner = 3; 
+  uint64 amount = 4; 
+  
+}
+

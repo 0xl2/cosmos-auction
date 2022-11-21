@@ -7,17 +7,11 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { MsgAuctionBid } from "./types/cosmosauction/cosmosauction/tx";
 import { MsgCreateAuction } from "./types/cosmosauction/cosmosauction/tx";
+import { MsgAuctionBid } from "./types/cosmosauction/cosmosauction/tx";
 
 
-export { MsgAuctionBid, MsgCreateAuction };
-
-type sendMsgAuctionBidParams = {
-  value: MsgAuctionBid,
-  fee?: StdFee,
-  memo?: string
-};
+export { MsgCreateAuction, MsgAuctionBid };
 
 type sendMsgCreateAuctionParams = {
   value: MsgCreateAuction,
@@ -25,13 +19,19 @@ type sendMsgCreateAuctionParams = {
   memo?: string
 };
 
-
-type msgAuctionBidParams = {
+type sendMsgAuctionBidParams = {
   value: MsgAuctionBid,
+  fee?: StdFee,
+  memo?: string
 };
+
 
 type msgCreateAuctionParams = {
   value: MsgCreateAuction,
+};
+
+type msgAuctionBidParams = {
+  value: MsgAuctionBid,
 };
 
 
@@ -52,20 +52,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendMsgAuctionBid({ value, fee, memo }: sendMsgAuctionBidParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgAuctionBid: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
-				let msg = this.msgAuctionBid({ value: MsgAuctionBid.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgAuctionBid: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendMsgCreateAuction({ value, fee, memo }: sendMsgCreateAuctionParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgCreateAuction: Unable to sign Tx. Signer is not present.')
@@ -80,20 +66,34 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		
-		msgAuctionBid({ value }: msgAuctionBidParams): EncodeObject {
-			try {
-				return { typeUrl: "/naruto0913.cosmosauction.cosmosauction.MsgAuctionBid", value: MsgAuctionBid.fromPartial( value ) }  
+		async sendMsgAuctionBid({ value, fee, memo }: sendMsgAuctionBidParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgAuctionBid: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgAuctionBid({ value: MsgAuctionBid.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:MsgAuctionBid: Could not create message: ' + e.message)
+				throw new Error('TxClient:sendMsgAuctionBid: Could not broadcast Tx: '+ e.message)
 			}
 		},
+		
 		
 		msgCreateAuction({ value }: msgCreateAuctionParams): EncodeObject {
 			try {
 				return { typeUrl: "/naruto0913.cosmosauction.cosmosauction.MsgCreateAuction", value: MsgCreateAuction.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgCreateAuction: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgAuctionBid({ value }: msgAuctionBidParams): EncodeObject {
+			try {
+				return { typeUrl: "/naruto0913.cosmosauction.cosmosauction.MsgAuctionBid", value: MsgAuctionBid.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgAuctionBid: Could not create message: ' + e.message)
 			}
 		},
 		

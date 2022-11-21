@@ -3,6 +3,8 @@ package naruto0913.cosmosauction.cosmosauction;
 
 import "gogoproto/gogo.proto";
 import "cosmosauction/cosmosauction/params.proto";
+import "cosmosauction/cosmosauction/auction_bider.proto";
+import "cosmosauction/cosmosauction/auction_winner.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "github.com/naruto0913/cosmos-auction/x/cosmosauction/types";
@@ -10,5 +12,7 @@ option go_package = "github.com/naruto0913/cosmos-auction/x/cosmosauction/types"
 // GenesisState defines the cosmosauction module's genesis state.
 message GenesisState {
   Params params = 1 [(gogoproto.nullable) = false];
+  repeated AuctionBider auctionBiderList = 2 [(gogoproto.nullable) = false];
+  repeated AuctionWinner auctionWinnerList = 3 [(gogoproto.nullable) = false];
   // this line is used by starport scaffolding # genesis/proto/state
 }

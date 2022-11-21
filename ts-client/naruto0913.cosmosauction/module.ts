@@ -73,7 +73,7 @@ class SDKModule {
 const Module = (test: IgniteClient) => {
 	return {
 		module: {
-			Naruto0913CosmosauctionCosmosauction: new SDKModule(test)
+			Naruto0913Cosmosauction: new SDKModule(test)
 		},
 		registry: msgTypes
   }

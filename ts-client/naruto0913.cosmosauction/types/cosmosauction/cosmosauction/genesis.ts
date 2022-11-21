@@ -2,7 +2,7 @@
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 
-export const protobufPackage = "naruto0913.cosmosauction.cosmosauction";
+export const protobufPackage = "naruto0913.cosmosauction";
 
 /** GenesisState defines the cosmosauction module's genesis state. */
 export interface GenesisState {

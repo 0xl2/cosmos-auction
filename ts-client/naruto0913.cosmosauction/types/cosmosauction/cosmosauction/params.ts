@@ -1,7 +1,7 @@
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "naruto0913.cosmosauction.cosmosauction";
+export const protobufPackage = "naruto0913.cosmosauction";
 
 /** Params defines the parameters for the module. */
 export interface Params {

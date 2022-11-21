@@ -1,5 +1,5 @@
 /* eslint-disable */
-export const protobufPackage = "naruto0913.cosmosauction.cosmosauction";
+export const protobufPackage = "naruto0913.cosmosauction";
 
 /** Msg defines the Msg service. */
 export interface Msg {

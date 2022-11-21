@@ -44311,7 +44311,7 @@ paths:
   /naruto0913/cosmos-auction/cosmosauction/params:
     get:
       summary: Parameters queries the parameters of the module.
-      operationId: Naruto0913CosmosauctionCosmosauctionParams
+      operationId: Naruto0913CosmosauctionParams
       responses:
         '200':
           description: A successful response.
@@ -73729,10 +73729,10 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
-  naruto0913.cosmosauction.cosmosauction.Params:
+  naruto0913.cosmosauction.Params:
     type: object
     description: Params defines the parameters for the module.
-  naruto0913.cosmosauction.cosmosauction.QueryParamsResponse:
+  naruto0913.cosmosauction.QueryParamsResponse:
     type: object
     properties:
       params:

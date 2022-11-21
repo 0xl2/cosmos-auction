@@ -1,5 +1,5 @@
 syntax = "proto3";
-package naruto0913.cosmosauction.cosmosauction;
+package naruto0913.cosmosauction;
 
 import "gogoproto/gogo.proto";
 

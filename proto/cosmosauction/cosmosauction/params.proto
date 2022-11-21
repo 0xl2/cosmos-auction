@@ -1,0 +1,12 @@
+syntax = "proto3";
+package naruto0913.cosmosauction.cosmosauction;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/naruto0913/cosmos-auction/x/cosmosauction/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}

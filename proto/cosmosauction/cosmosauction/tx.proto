@@ -1,0 +1,13 @@
+syntax = "proto3";
+package naruto0913.cosmosauction.cosmosauction;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/naruto0913/cosmos-auction/x/cosmosauction/types";
+
+// Msg defines the Msg service.
+service Msg {
+    // this line is used by starport scaffolding # proto/tx/rpc
+}
+
+// this line is used by starport scaffolding # proto/tx/message

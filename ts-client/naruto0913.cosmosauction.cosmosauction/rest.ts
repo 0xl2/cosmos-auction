@@ -9,6 +9,12 @@
  * ---------------------------------------------------------------
  */
 
+export type CosmosauctionMsgAuctionBidResponse = object;
+
+export interface CosmosauctionMsgCreateAuctionResponse {
+  auctionIndex?: string;
+}
+
 /**
  * Params defines the parameters for the module.
  */
